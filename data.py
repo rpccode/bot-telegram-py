@@ -1,12 +1,9 @@
-import pyodata
-import requests
+import pandas as pd
 
 
-SERVICE_URL = 'http://services.odata.org/V2/Northwind/Northwind.svc/'
-northwind = pyodata.Client(SERVICE_URL, requests.Session())
+data = pd.read_csv(
+    'marketing_sample_for_amazon_com-ecommerce__20200101_20200131__10k_data.csv')
 
 
-def traerLosProduct():
-    productos = northwind.entity_sets.Employees.get_entities().select(
-        'EmployeeID,LastName').execute()
-    print(productos)
+def datos():
+    print(data.head(10))

@@ -2,9 +2,11 @@ from aiogram import Bot, Dispatcher, executor, types
 from aiogram.types import ReplyKeyboardMarkup
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from random import randint
+from data import *
 
 bot = Bot(token='5926816130:AAF0YddnlJ64rj4OxpX3VtT-0BNIA_TtN5A')
 dp = Dispatcher(bot)
+
 
 button1 = InlineKeyboardButton(
     text="ℹ   button1", callback_data="randomvalue_of10")
@@ -55,7 +57,7 @@ async def kb_answer(message: types.Message):
 @dp.message_handler()
 async def kb_answer2(message: types.Message):
     if message.text == '🧭 Horarios':
-        await message.reply("Hi! How are you?")
+        await message.reply("Hi! How are you {  }")
     elif message.text == '🚹  Servicios':
         await message.reply("https://youtube.com/gunthersuper")
     else:
@@ -65,11 +67,11 @@ async def kb_answer2(message: types.Message):
 @dp.message_handler()
 async def kb_answer3(message: types.Message):
     if message.text == 'ℹ Productos':
-        await message.reply("Hi! How are you?")
+        await message.reply(f"Hi! How are you? { datos()  }")
     elif message.text == '🔍Orden':
         await message.reply("https://youtube.com/gunthersuper")
     else:
-        await message.reply(f"Your message is: {message.text}")
+        await message.reply(f"Your message is: { datos() }")
 
 
 executor.start_polling(dp)
