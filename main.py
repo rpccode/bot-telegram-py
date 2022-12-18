@@ -1,6 +1,7 @@
+from config import * # importamos el token
 import telebot
 
-bot = telebot.TeleBot("5926816130:AAF0YddnlJ64rj4OxpX3VtT-0BNIA_TtN5A")
+bot = telebot.TeleBot(token)
 
 
 @bot.message_handler(commands=['start', 'help'])
@@ -13,4 +14,7 @@ def echo_all(message):
     bot.reply_to(message, message.text)
 
 
-bot.infinity_polling()
+# MAIN ########################################
+if __name__ == '__main__':
+    print('Iniciando Bot')
+    bot.infinity_polling()
