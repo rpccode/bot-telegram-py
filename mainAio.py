@@ -1,10 +1,11 @@
+from config import * # importamos el token
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.types import ReplyKeyboardMarkup
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from random import randint
 from data import *
 
-bot = Bot(token='5926816130:AAF0YddnlJ64rj4OxpX3VtT-0BNIA_TtN5A')
+bot = Bot(token)
 dp = Dispatcher(bot)
 
 
