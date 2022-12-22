@@ -30,7 +30,7 @@ def cmd_button(message):
     b3 = InlineKeyboardButton("STATUS DE SU RESERVA", callback_data="b3")
     b4 = InlineKeyboardButton("CANCELACION SU RESERVA", callback_data="b4")
     markup.add(b1, b2, b3, b4)
-    bot.send_message(message.chat.id, "Tienda de Bike  LA ESPERANZA", reply_markup=markup)
+    bot.send_message(message.chat.id, "Tiendas BiciCentro", reply_markup=markup)
 
 
 def cmd_button_orden_estado(chat):
@@ -63,11 +63,11 @@ def cmd_start(message):
 
     markup.add(b1, b2, b3, b4)
     bot.reply_to(message,
-                 "Hola Bienvenido a Tienda La Esperanza " + message.chat.first_name + ", aqui estan todos los comandos que puedes usar, para controlar "
+                 "Hola Bienvenido a Tiendas BiciCentro " + message.chat.first_name + ", aqui estan todos los comandos que puedes usar, para controlar "
                                                                                       "el bot.\n\n/start - Mostrar todos los comandos\n\n/buttons - Te "
                                                                                       "muestra los botones para realizar las consultas\n\n/info - "
                                                                                       "Ofrece informacion sobre el bot\n\n/help - Te dara una pequeña "
-                                                                                      "descripcion de como puedes interactuar con el bot\n\n/tienda - Acesso a la tienda",
+                                                                                      "descripcion de como puedes interactuar con la tienda.\n\n/Acesso a la tienda",
                  reply_markup=markup)
     # cmd_button_comman(message)
 
@@ -78,23 +78,22 @@ def cmd_info(message):
     # Ofrece informacion sobre el bot y su autor
     bot.send_chat_action(message.chat.id, "typing")
     bot.reply_to(message,
-                 "Hola " + message.chat.first_name + ", aqui esta la informacion sobre Supermercado La Esperanza.\n\n")
+                 "Hola " + message.chat.first_name + ", aqui esta la informacion sobre tiendas BiciCentro.\n\n")
     # Messages
-    bot.send_message(message.chat.id, "DIRECCION.\n Ave. Estrella Sadhala, 51000, Santiago de los Caballeros")
-    bot.send_message(message.chat.id, "CORREO ELECTRONICO.\n: supermercadolaesperanza@gmail.com")
+    bot.send_message(message.chat.id, "DIRECCION.\n Av. Juan Pablo Duarte casi esq. Benito Juarez Edificio Alejo, Villa Olga.")
+    bot.send_message(message.chat.id, "CORREO ELECTRONICO.\n: bicicentro@gmail.com")
     bot.send_message(message.chat.id,
-                     "HORARIOS\n\nDomingo\t08:00:00AM - 02:00:00PM\nLunes\t\t\t08:00:00AM - "
+                     "HORARIOS\n\nDomingo\tNo laborable\nLunes\t\t\t08:00:00AM - "
                      "10:00:00PM\nMartes\t\t\t08:00:00AM - 10:00:00PM\nMiercoles\t\t\t08:00:00AM - "
                      "10:00:00PM\nJueves\t\t\t08:00:00AM - 10:00:00PM\nViernes\t\t\t08:00:00AM - "
-                     "10:00:00PM\nSabado\t\t\t08:00:00AM - 02:00:00PM\n")
+                     "10:00:00PM\nSabado\t\t\t08:00:00AM - 12:00:00PM\n")
     bot.send_message(message.chat.id,
-                     "TELEFONOS\n\nTelefonos disponibles:\n\nTelefono #1: (809) 233-1010\nTelefono #2: (809) "
+                     "TELEFONOS\n\nTelefonos disponibles:\n\nTelefono #1: (809) 582-4146\nTelefono #2: (809) "
                      "575-6000\nTelefono #3: (809) 241-6262\n")
-    bot.send_message(message.chat.id, "[PAGINA WEB](https://laesperanzaca.com/supermarket/)", parse_mode="MarkDownV2",
+    bot.send_message(message.chat.id, "[PAGINA WEB](https://bicicentro.com.do/)", parse_mode="MarkDownV2",
                      disable_web_page_preview=True)
     bot.send_message(message.chat.id,
-                     "[FACEBOOK](https://web.facebook.com/pages/category/Specialty-Grocery-Store/La-Esperanza-Food"
-                     "-Center-770731589767698/?_rdc=1&_rdr)",
+                     "[FACEBOOK](https://web.facebook.com/bicicentroenlinea/?_rdc=1&_rdr)",
                      parse_mode="MarkDownV2", disable_web_page_preview=True)
     bot.send_message(message.chat.id, "[GMAIL](https://mail.google.com/mail/u/0/?tab=rm&ogbl)", parse_mode="MarkDownV2",
                      disable_web_page_preview=True)
@@ -106,9 +105,9 @@ def cmd_help(message):
     # Ofrece ayuda sobre como utilizar el bot
     bot.send_chat_action(message.chat.id, "typing")
     bot.reply_to(message,
-                 "Hola este es el apartado de ayuda:Digitar los siguientes comandos en el chat\n\nPara poder "
+                 "Hola este es el apartado de ayuda: Digitar los siguientes comandos en el chat\n\nPara poder "
                  "contactar con el bot puedes utilizar el comando /start.\nPara ver los botones disponibles "
-                 "/buttons.\nPara ver informacion detallada sobre El Supermercado La Esperanza /info.\n Verificar "
+                 "/buttons.\nPara ver informacion detallada sobre tiendas BiciCentro /info.\n Verificar "
                  "comandos /help.")
 
 
@@ -121,9 +120,9 @@ def cmd_tienda(message):
     # Botones
     b1 = InlineKeyboardButton("Login", callback_data="login")
     b2 = InlineKeyboardButton("Registro", callback_data="reg")
-    b3 = InlineKeyboardButton("cerrar", callback_data="exit")
+    b3 = InlineKeyboardButton("Cerrar", callback_data="exit")
     markup.add(b1, b2, b3)
-    bot.send_message(message.chat.id, "Bienvenido a la Tienda antes de proseguir debe autenticarse:",
+    bot.send_message(message.chat.id, "Bienvenido a tiendas BiciCentro antes de proseguir debe autenticarse:",
                      reply_markup=markup)
 
 
@@ -144,11 +143,11 @@ def cmd_button_comman(message):
     b3 = InlineKeyboardButton("Help", callback_data="help")
     markup.add(b1, b2, b3)
     bot.reply_to(message,
-                 "Hola Bienvenido a Tienda La Esperanza " + message.chat.first_name + ", aqui estan todos los comandos que puedes usar, para controlar "
+                 "Hola Bienvenido a tiendas BiciCentro " + message.chat.first_name + ", aqui estan todos los comandos que puedes usar, para controlar "
                                                                                       "el bot.\n\n/start - Mostrar todos los comandos\n\n/buttons - Te "
                                                                                       "muestra los botones para realizar las consultas\n\n/info - "
                                                                                       "Ofrece informacion sobre el bot\n\n/help - Te dara una pequeña "
-                                                                                      "descripcion de como puedes interactuar con el bot",
+                                                                                      "descripcion de como puedes interactuar.",
                  reply_markup=markup)
     bot.delete_message(message.chat.id, message.message_id)
 
@@ -199,10 +198,10 @@ def respuesta_botones_inline(call):
         buscar_estados(call)
     elif call.data == 'col':
         respuesta_botones_de_producto_buscar_color(call)
-        bot.send_message(call.message.chat.id, 'Elija una Opcion?')
+        bot.send_message(call.message.chat.id, 'Elija una opcion?')
     elif call.data == 'col':
         respuesta_botones_de_producto_buscar_color(call)
-        bot.send_message(call.message.chat.id, 'Elija una Opcion?')
+        bot.send_message(call.message.chat.id, 'Elija una opcion?')
     elif call.data == 'tam':
         respuesta_botones_de_producto_buscar_size(chat)
     elif call.data == 'pe':
@@ -217,17 +216,17 @@ def respuesta_botones_inline(call):
 
 def registro(chat):
     markup = ForceReply()  # Numero de botones por fila (3 por defecto)
-    msg = bot.send_message(chat, "Digite un  Nombre de Usuario:", reply_markup=markup)
+    msg = bot.send_message(chat, "Digite un  nombre de usuario:", reply_markup=markup)
     bot.register_next_step_handler(msg, cmd_regist_username)
 
 
 def regi_password(chat):
     markup = ForceReply()  # Numero de botones por fila (3 por defecto)
-    msg = bot.send_message(chat, "Digite un  Password:", reply_markup=markup)
+    msg = bot.send_message(chat, "Digite una contraseña:", reply_markup=markup)
     bot.register_next_step_handler(msg, cmd_regist_password)
 def regi_email(chat):
     markup = ForceReply()  # Numero de botones por fila (3 por defecto)
-    msg = bot.send_message(chat, "Digite un  email:", reply_markup=markup)
+    msg = bot.send_message(chat, "Digite un correo electronico:", reply_markup=markup)
     bot.register_next_step_handler(msg, cmd_regist_email)
 
 def cancelar_orden(message):
@@ -236,7 +235,7 @@ def cancelar_orden(message):
     no = InlineKeyboardButton(text='NO', callback_data='n')
     cerrar = InlineKeyboardButton(text='Cerrar', callback_data='exit')
     markup.add(si, no, cerrar)
-    bot.send_message(message.chat.id, "Esta seguro Que desea Cancelar la orden?", reply_markup=markup)
+    bot.send_message(message.chat.id, "Esta seguro que desea cancelar la orden?", reply_markup=markup)
 
 
 def buscar_estados(message):
@@ -295,7 +294,7 @@ def cmd_entrar(message):
 
     else:
         markup = ForceReply()
-        msg = bot.send_message(chat, "Password incorrecto: digitelo de nuevo", reply_markup=markup)
+        msg = bot.send_message(chat, "Contraseña incorrecta, digite de nuevo:", reply_markup=markup)
         bot.register_next_step_handler(msg, cmd_entrar)
 
 
@@ -308,7 +307,7 @@ def cmd_regist_username(message):
         regi_password(chat)
     else:
         markup = ForceReply()
-        msg = bot.send_message(chat, "Este Usuario  existe en la Base de datos: digitelo de nuevo",
+        msg = bot.send_message(chat, "Este usuario  existe, digite uno nuevo",
                                reply_markup=markup)
         bot.register_next_step_handler(msg, registro)
 
@@ -321,7 +320,7 @@ def cmd_regist_password(message):
         regi_email(chat)
     else:
         markup = ForceReply()
-        msg = bot.send_message(chat, "Password invalido: digitelo de nuevo",
+        msg = bot.send_message(chat, "Contraseña invalida: digite de nuevo",
                                reply_markup=markup)
         bot.register_next_step_handler(msg, cmd_regist_password)
 
@@ -336,7 +335,7 @@ def cmd_regist_email(message):
 
     else:
         markup = ForceReply()
-        msg = bot.send_message(chat, "Password invalido: digitelo de nuevo",
+        msg = bot.send_message(chat, "Contraseña invalida, digite de nuevo",
                                reply_markup=markup)
         bot.register_next_step_handler(msg, cmd_regist_password)
 def registrar_user(message):
@@ -369,7 +368,7 @@ def cmd_buscar_username(message):
         cmd_login_2(chat)
     else:
         markup = ForceReply()
-        msg = bot.send_message(chat, "Este Usuario no existe en la Base de datos: digitelo de nuevo",
+        msg = bot.send_message(chat, "Este usuario existe: digite uno nuevo",
                                reply_markup=markup)
         bot.register_next_step_handler(msg, cmd_buscar_username)
 
@@ -422,7 +421,7 @@ def producto_buscar_color(message):
         bot.register_next_step_handler(msg, volver_a_preguntar)
     else:
         bot.send_message(message.chat.id, 'No se encontraron resultados para esta consulta')
-        msg = bot.send_message(message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
+        msg = bot.send_message(message.chat.id, 'Desea seguir buscando?', reply_markup=markup)
         bot.register_next_step_handler(msg, volver_a_preguntar)
 
 
@@ -452,7 +451,7 @@ def respuesta_botones_de_producto_buscar_size(chat):
 
     print(min)
     markup = ForceReply()  # Numero de botones por fila (3 por defecto)
-    msg = bot.send_message(chat, "Por el Momento Solo Contamos con los Siguientes Size:\n\n "
+    msg = bot.send_message(chat, "Por el momento solo contamos con los siguientes Size:\n\n "
                                  "S\t""M\t""xl\t" ' o puede seleccionar un Size de forma Numerica ej: 33 '
                                  "", reply_markup=markup)
     bot.register_next_step_handler(msg, producto_buscar_size)
@@ -461,7 +460,7 @@ def respuesta_botones_de_producto_buscar_size(chat):
 def producto_buscar_size(message):
     markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True,
                                  row_width=3)
-    markup.add('Buscar', 'volver al menu')
+    markup.add('Buscar', 'Volver al menu')
     size = message.text
     productos = traer_productos_por_size(size)
     if bool(productos):
@@ -568,7 +567,7 @@ def botones_producto(cid, mid, chat):
     b4 = InlineKeyboardButton("Nombre del Producto", callback_data="nom")
     b5 = InlineKeyboardButton("Numero del Producto", callback_data="num")
     markup.add(b1, b2, b3, b4, b5)
-    bot.send_message(chat, "Puede Consultar sus productos por la siguiente Opciones",
+    bot.send_message(chat, "Puede consultar sus productos en las siguientes opciones",
                      reply_markup=markup)
     bot.delete_message(cid, mid)
 
@@ -792,7 +791,7 @@ if __name__ == '__main__':
     hilo_bot = threading.Thread(name="hilo_bot", target=recibir_mensajes)
     hilo_bot.start()
     bot.send_message(MI_CHAT_ID,
-                     "Bienvenido a Tienda  La Esperanza Bot,\n Soy su asistente virtual es un gusto tenerte por "
-                     "aqui!!.\n\nTienda La Esperanza es un bot creado para facilitar "
+                     "Bienvenido a tiendas BiciCentro,\n Soy su asistente virtual es un gusto tenerte por "
+                     "aqui!!.\n\nTiendas BiciCentro es un bot creado para facilitar "
                      "consultas, compras y reservas de nuestros productos disponibles. Si buscas mas informacion "
                      "digite /start")
