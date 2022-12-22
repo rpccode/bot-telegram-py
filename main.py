@@ -790,6 +790,8 @@ if __name__ == '__main__':
     # Usando threading
     hilo_bot = threading.Thread(name="hilo_bot", target=recibir_mensajes)
     hilo_bot.start()
+    foto = open("./public/images/bicicentro.jpg", "rb")
+    bot.send_photo(MI_CHAT_ID, foto, "Tiendas BiciCentro")
     bot.send_message(MI_CHAT_ID,
                      "Bienvenido a tiendas BiciCentro,\n Soy su asistente virtual es un gusto tenerte por "
                      "aqui!!.\n\nTiendas BiciCentro es un bot creado para facilitar "
