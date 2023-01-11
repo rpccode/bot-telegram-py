@@ -1,4 +1,4 @@
-from data import *
+
 from db import *
 from config import *  # importamos el token
 import telebot
@@ -9,11 +9,9 @@ import threading
 import asyncio
 from decimal import Decimal
 # Botones inline
-# Crea botones inline
-from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton, LabeledPrice, ShippingOption
-# Define los botones inline
-from telebot.types import ReplyKeyboardMarkup, ForceReply, ReplyKeyboardRemove
-import pywhatkit
+from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton, LabeledPrice,ShippingOption  # Crea botones inline
+from telebot.types import ReplyKeyboardMarkup, ForceReply, ReplyKeyboardRemove  # Define los botones inline
+
 
 
 bot = telebot.TeleBot(TOKEN2)
@@ -25,9 +23,9 @@ lista_articulos = {}
 list_a = list()
 
 
+
 shipping_options = [
-    ShippingOption(id='instant', title='WorldWide Teleporter').add_price(
-        LabeledPrice('Teleporter', 1000)),
+    ShippingOption(id='instant', title='WorldWide Teleporter').add_price(LabeledPrice('Teleporter', 1000)),
     ShippingOption(id='pickup', title='Local pickup').add_price(LabeledPrice('Pickup', 300))]
 
 
@@ -37,8 +35,7 @@ shipping_options = [
 def cmd_button(message):
     bot.send_chat_action(message.chat.id, "typing")
     # Mostrar un mensaje con botones inline, debajo del mensaje
-    # Numero de botones por fila (3 por defecto)
-    markup = InlineKeyboardMarkup(row_width=1)
+    markup = InlineKeyboardMarkup(row_width=1)  # Numero de botones por fila (3 por defecto)
     # Botones
     b1 = InlineKeyboardButton("NUESTROS PRODUCTOS", callback_data="b1")
     b2 = InlineKeyboardButton("RESERVA DE PRODUCTOS", callback_data="b2")
@@ -46,15 +43,13 @@ def cmd_button(message):
     b4 = InlineKeyboardButton("CANCELACION SU RESERVA", callback_data="b4")
     b5 = InlineKeyboardButton("Carra de Producto", callback_data="b5")
     markup.add(b1, b2, b3, b4, b5)
-    bot.send_message(message.chat.id, "Tiendas BiciCentro",
-                     reply_markup=markup)
+    bot.send_message(message.chat.id, "Tiendas BiciCentro", reply_markup=markup)
 
 
 def cmd_button_orden_estado(message):
     bot.send_chat_action(message.chat.id, "typing")
     # Mostrar un mensaje con botones inline, debajo del mensaje
-    # Numero de botones por fila (3 por defecto)
-    markup = InlineKeyboardMarkup(row_width=1)
+    markup = InlineKeyboardMarkup(row_width=1)  # Numero de botones por fila (3 por defecto)
     # Botones
     b1 = InlineKeyboardButton("En Progreso", callback_data="1")
     b2 = InlineKeyboardButton("Aprovado", callback_data="2")
@@ -63,8 +58,7 @@ def cmd_button_orden_estado(message):
     b5 = InlineKeyboardButton("Enviada", callback_data="5")
     b6 = InlineKeyboardButton("Canceladas", callback_data="6")
     markup.add(b1, b2, b3, b4, b5, b6)
-    bot.send_message(
-        message.chat.id, "Verifica el Estado de tu reserva:", reply_markup=markup)
+    bot.send_message(message.chat.id, "Verifica el Estado de tu reserva:", reply_markup=markup)
 
 
 @bot.message_handler(commands=['start'])
@@ -73,8 +67,7 @@ def cmd_start(message):
     # Dar la bienvenida al usuario del bot
     bot.send_chat_action(message.chat.id, "typing")
     # Mostrar un mensaje con botones inline, debajo del mensaje
-    # Numero de botones por fila (3 por defecto)
-    markup = InlineKeyboardMarkup(row_width=1)
+    markup = InlineKeyboardMarkup(row_width=1)  # Numero de botones por fila (3 por defecto)
     # Botones
     b1 = InlineKeyboardButton("Start", callback_data="start")
     b2 = InlineKeyboardButton("Info", callback_data="info")
@@ -139,8 +132,7 @@ def cmd_tienda(message):
     # Ofrece ayuda sobre como utilizar el bot
     bot.send_chat_action(message.chat.id, "typing")
     # Mostrar un mensaje con botones inline, debajo del mensaje
-    # Numero de botones por fila (3 por defecto)
-    markup = InlineKeyboardMarkup(row_width=2)
+    markup = InlineKeyboardMarkup(row_width=2)  # Numero de botones por fila (3 por defecto)
     # Botones
     b1 = InlineKeyboardButton("Login", callback_data="login")
     b2 = InlineKeyboardButton("Registro", callback_data="reg")
@@ -160,8 +152,7 @@ def cmd_button_comman(message):
 
     bot.send_chat_action(message.chat.id, "typing")
     # Mostrar un mensaje con botones inline, debajo del mensaje
-    # Numero de botones por fila (3 por defecto)
-    markup = InlineKeyboardMarkup(row_width=1)
+    markup = InlineKeyboardMarkup(row_width=1)  # Numero de botones por fila (3 por defecto)
     # Botones
     b1 = InlineKeyboardButton("Start", callback_data="start")
     b2 = InlineKeyboardButton("Info", callback_data="info")
@@ -212,7 +203,7 @@ def respuesta_botones_inline(call):
     elif call.data == 'b5':
         ver_lista(message)
     elif call.data == 'pa':
-        command_pay(message)
+       command_pay(message)
     elif call.data == 'can':
         bot.delete_message(cid, mid)
         cmd_button(message)
@@ -256,15 +247,13 @@ def respuesta_botones_inline(call):
 
 def cancelar_ordenes(chat):
     markup = ForceReply()  # Numero de botones por fila (3 por defecto)
-    msg = bot.send_message(
-        chat, "Digite un  Nombre de Orden a Cancelar:", reply_markup=markup)
+    msg = bot.send_message(chat, "Digite un  Nombre de Orden a Cancelar:", reply_markup=markup)
     bot.register_next_step_handler(msg, db_cancela_orden)
 
 
 def registro(chat):
     markup = ForceReply()  # Numero de botones por fila (3 por defecto)
-    msg = bot.send_message(
-        chat, "Digite un  Nombre de Usuario:", reply_markup=markup)
+    msg = bot.send_message(chat, "Digite un  Nombre de Usuario:", reply_markup=markup)
     bot.register_next_step_handler(msg, cmd_regist_username)
 
 
@@ -286,8 +275,7 @@ def cancelar_orden(message):
     no = InlineKeyboardButton(text='NO', callback_data='n')
     cerrar = InlineKeyboardButton(text='Cerrar', callback_data='exit')
     markup.add(si, no, cerrar)
-    bot.send_message(
-        message.chat.id, "Esta seguro Que desea Cancelar la orden?", reply_markup=markup)
+    bot.send_message(message.chat.id, "Esta seguro Que desea Cancelar la orden?", reply_markup=markup)
 
 
 def db_cancela_orden(message):
@@ -299,13 +287,11 @@ def db_cancela_orden(message):
 
     if resl == 1:
         bot.send_message(message.chat.id, 'Orden Cancelada')
-        msg = bot.send_message(
-            message.chat.id, 'Desea seguir Cancelando?', reply_markup=markup)
+        msg = bot.send_message(message.chat.id, 'Desea seguir Cancelando?', reply_markup=markup)
         bot.register_next_step_handler(msg, cmd_button)
     else:
         bot.send_message(message.chat.id, 'Error al Cancelar la orden ')
-        msg = bot.send_message(
-            message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
+        msg = bot.send_message(message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
         bot.register_next_step_handler(msg, cmd_button)
 
 
@@ -329,21 +315,17 @@ def buscar_estados(message):
             texto += f'<code>Monto Total: </code>{producto[6]}\n'
             bot.send_message(message.message.chat.id, texto, parse_mode='html')
 
-        msg = bot.send_message(message.message.chat.id,
-                               'Desea seguir Buscando?', reply_markup=markup)
+        msg = bot.send_message(message.message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
         bot.register_next_step_handler(msg, cmd_button_orden_estado)
     else:
-        bot.send_message(message.message.chat.id,
-                         'No se encontraron resultados para esta consulta')
-        msg = bot.send_message(message.message.chat.id,
-                               'Desea seguir Buscando?', reply_markup=markup)
+        bot.send_message(message.message.chat.id, 'No se encontraron resultados para esta consulta')
+        msg = bot.send_message(message.message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
         bot.register_next_step_handler(msg, cmd_button_orden_estado)
 
 
 def cmd_login(chat):
     markup = ForceReply()  # Numero de botones por fila (3 por defecto)
-    msg = bot.send_message(
-        chat, "Cual es su Nombre de Usuario:", reply_markup=markup)
+    msg = bot.send_message(chat, "Cual es su Nombre de Usuario:", reply_markup=markup)
     bot.register_next_step_handler(msg, cmd_buscar_username)
 
 
@@ -369,8 +351,7 @@ def cmd_entrar(message):
 
     else:
         markup = ForceReply()
-        msg = bot.send_message(
-            chat, "Password incorrecto: digitelo de nuevo", reply_markup=markup)
+        msg = bot.send_message(chat, "Password incorrecto: digitelo de nuevo", reply_markup=markup)
         bot.register_next_step_handler(msg, cmd_entrar)
 
 
@@ -434,8 +415,7 @@ def registrar_user(message):
 
     else:
 
-        msg = bot.send_message(
-            message.chat.id, "Error al registrar el usuario")
+        msg = bot.send_message(message.chat.id, "Error al registrar el usuario")
         bot.register_next_step_handler(msg, cmd_tienda)
 
 
@@ -474,8 +454,7 @@ def respuesta_botones_de_producto_buscar_color(call):
     if call.data == "col":
         markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True,
                                      row_width=3)  # Numero de botones por fila (3 por defecto)
-        markup.add('Black', 'Blue', 'Grey', 'Multi', 'Red',
-                   'Silver', 'Silver/Black', 'White', 'Yellow')
+        markup.add('Black', 'Blue', 'Grey', 'Multi', 'Red', 'Silver', 'Silver/Black', 'White', 'Yellow')
         msg = bot.send_message(chat, "Por el Momento Solo Contamos con los Siguientes Colores:\n\n "
                                      "Black,Blue,Grey,Multi,Red,Silver,Silver/Black,White,Yellow"
                                      "", reply_markup=markup)
@@ -490,8 +469,7 @@ def respuesta_botones_de_producto_buscar_precio(call):
     print(min)
     markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True,
                                  row_width=3)  # Numero de botones por fila (3 por defecto)
-    markup.add('0 a 100', '100 a 500', '500 a 1000',
-               '1000 a 1500', '1500 a 2000', '2000 a 2500')
+    markup.add('0 a 100', '100 a 500', '500 a 1000', '1000 a 1500', '1500 a 2000', '2000 a 2500')
     msg = bot.send_message(chat, "Para facilitar su Busqueda puede elejir una de las siguientes opciones:\n\n ",
                            reply_markup=markup)
     bot.register_next_step_handler(msg, producto_buscar_precio)
@@ -525,14 +503,11 @@ def producto_buscar_precio(message):
             texto += f'<code>Tamaño del producto: </code>{producto[6]}\n'
             texto += f'<code>Ancho del producto: </code>{producto[7]} cm\n'
             bot.send_message(message.chat.id, texto, parse_mode='html')
-        msg = bot.send_message(
-            message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
+        msg = bot.send_message(message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
         bot.register_next_step_handler(msg, volver_a_preguntar_precio)
     else:
-        bot.send_message(
-            message.chat.id, 'No se encontraron resultados para esta consulta')
-        msg = bot.send_message(
-            message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
+        bot.send_message(message.chat.id, 'No se encontraron resultados para esta consulta')
+        msg = bot.send_message(message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
         bot.register_next_step_handler(msg, volver_a_preguntar_precio)
 
 
@@ -543,12 +518,12 @@ def volver_a_preguntar_precio(message):
         bot.delete_message(message.chat.id, message.message_id)
         markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True,
                                      row_width=3)  # Numero de botones por fila (3 por defecto)
-        markup.add('0 a 100', '100 a 500', '500 a 1000',
-                   '1000 a 1500', '1500 a 2000', '2000 a 2500')
+        markup.add('0 a 100', '100 a 500', '500 a 1000', '1000 a 1500', '1500 a 2000', '2000 a 2500')
         msg = bot.send_message(message.chat.id,
                                "Para facilitar su Busqueda puede elejir una de las siguientes opciones:\n\n ",
                                reply_markup=markup)
         bot.register_next_step_handler(msg, producto_buscar_precio)
+
 
     else:
         cid = message.from_user.id
@@ -574,14 +549,11 @@ def producto_buscar_color(message):
             texto += f'<code>Tamaño del producto: </code>{producto[6]}\n'
             texto += f'<code>Ancho del producto: </code>{producto[7]} cm\n'
             bot.send_message(message.chat.id, texto, parse_mode='html')
-        msg = bot.send_message(
-            message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
+        msg = bot.send_message(message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
         bot.register_next_step_handler(msg, volver_a_preguntar)
     else:
-        bot.send_message(
-            message.chat.id, 'No se encontraron resultados para esta consulta')
-        msg = bot.send_message(
-            message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
+        bot.send_message(message.chat.id, 'No se encontraron resultados para esta consulta')
+        msg = bot.send_message(message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
         bot.register_next_step_handler(msg, volver_a_preguntar)
 
 
@@ -592,12 +564,12 @@ def volver_a_preguntar(message):
         bot.delete_message(message.chat.id, message.message_id)
         markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True,
                                      row_width=3)  # Numero de botones por fila (3 por defecto)
-        markup.add('Black', 'Blue', 'Grey', 'Multi', 'Red',
-                   'Silver', 'Silver/Black', 'White', 'Yellow')
+        markup.add('Black', 'Blue', 'Grey', 'Multi', 'Red', 'Silver', 'Silver/Black', 'White', 'Yellow')
         msg = bot.send_message(message.chat.id, "Por el Momento Solo Contamos con los Siguientes Colores:\n\n "
                                                 "Black,Blue,Grey,Multi,Red,Silver,Silver/Black,White,Yellow"
                                                 "", reply_markup=markup)
         bot.register_next_step_handler(msg, producto_buscar_color)
+
 
     else:
         cid = message.from_user.id
@@ -633,14 +605,11 @@ def producto_buscar_size(message):
             texto += f'<code>Tamaño del producto: </code>{producto[6]}\n'
             texto += f'<code>Ancho del producto: </code>{producto[7]} cm\n'
             bot.send_message(message.chat.id, texto, parse_mode='html')
-        msg = bot.send_message(
-            message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
+        msg = bot.send_message(message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
         bot.register_next_step_handler(msg, volver_a_preguntar_size)
     else:
-        bot.send_message(
-            message.chat.id, 'No se encontraron resultados para esta consulta')
-        msg = bot.send_message(
-            message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
+        bot.send_message(message.chat.id, 'No se encontraron resultados para esta consulta')
+        msg = bot.send_message(message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
         bot.register_next_step_handler(msg, volver_a_preguntar_size)
 
 
@@ -684,15 +653,12 @@ def producto_buscar_weigth(message):
             texto += f'<code>Tamaño del producto: </code>{producto[6]}\n'
             texto += f'<code>Ancho del producto: </code>{producto[7]} cm\n'
             bot.send_message(message.chat.id, texto, parse_mode='html')
-        msg = bot.send_message(
-            message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
+        msg = bot.send_message(message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
         bot.register_next_step_handler(msg, volver_a_preguntar_weigth)
 
     else:
-        bot.send_message(
-            message.chat.id, 'No se encontraron resultados para esta consulta')
-        msg = bot.send_message(
-            message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
+        bot.send_message(message.chat.id, 'No se encontraron resultados para esta consulta')
+        msg = bot.send_message(message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
         bot.register_next_step_handler(msg, volver_a_preguntar_weigth)
 
 
@@ -725,11 +691,9 @@ def example(call):
 
 
 def botones_producto(cid, mid, chat):
-    # Numero de botones por fila (3 por defecto)
-    markup = InlineKeyboardMarkup(row_width=1)
+    markup = InlineKeyboardMarkup(row_width=1)  # Numero de botones por fila (3 por defecto)
     # Botones
-    b1 = InlineKeyboardButton(
-        "Especificacciones del Producto", callback_data="esp")
+    b1 = InlineKeyboardButton("Especificacciones del Producto", callback_data="esp")
     b2 = InlineKeyboardButton("Categoria de  PRODUCTOS", callback_data="cat")
     b3 = InlineKeyboardButton("Precio de Producto", callback_data="pre")
     b4 = InlineKeyboardButton("Nombre del Producto", callback_data="nom")
@@ -741,15 +705,13 @@ def botones_producto(cid, mid, chat):
 
 
 def boton_esp(chat):
-    # Numero de botones por fila (3 por defecto)
-    markup = InlineKeyboardMarkup(row_width=1)
+    markup = InlineKeyboardMarkup(row_width=1)  # Numero de botones por fila (3 por defecto)
     # Botones
     b1 = InlineKeyboardButton("color del Producto", callback_data="col")
     b2 = InlineKeyboardButton("Tamaño del  PRODUCTOS", callback_data="tam")
     b3 = InlineKeyboardButton("Peso del Producto", callback_data="pe")
     markup.add(b1, b2, b3)
-    bot.send_message(
-        chat, "Puede Consultar sus productos por la siguiente Opciones", reply_markup=markup)
+    bot.send_message(chat, "Puede Consultar sus productos por la siguiente Opciones", reply_markup=markup)
 
 
 def respuesta_botones_de_producto_buscar_categoria(chat):
@@ -798,8 +760,7 @@ def respuesta_botones_de_producto_buscar_categoria(chat):
                'Touring Frames',
                'Vests',
                'Wheels')
-    msg = bot.send_message(
-        chat, "Elija una Categoria:\n\n", reply_markup=markup)
+    msg = bot.send_message(chat, "Elija una Categoria:\n\n", reply_markup=markup)
     bot.register_next_step_handler(msg, producto_buscar_categoria)
 
 
@@ -820,14 +781,11 @@ def producto_buscar_categoria(message):
             texto += f'<code>Tamaño del producto: </code>{producto[4]}\n'
             texto += f'<code>Categoria del producto: </code>{producto[6]}\n'
             bot.send_message(message.chat.id, texto, parse_mode='html')
-        msg = bot.send_message(
-            message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
+        msg = bot.send_message(message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
         bot.register_next_step_handler(msg, volver_a_preguntar_cat)
     else:
-        bot.send_message(
-            message.chat.id, 'No se encontraron resultados para esta consulta')
-        msg = bot.send_message(
-            message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
+        bot.send_message(message.chat.id, 'No se encontraron resultados para esta consulta')
+        msg = bot.send_message(message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
         bot.register_next_step_handler(msg, volver_a_preguntar_cat)
 
 
@@ -871,14 +829,11 @@ def producto_buscar_nombre(message):
             texto += f'<code>Tamaño del producto: </code>{producto[6]}\n'
             texto += f'<code>Ancho del producto: </code>{producto[7]} cm\n'
             bot.send_message(message.chat.id, texto, parse_mode='html')
-        msg = bot.send_message(
-            message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
+        msg = bot.send_message(message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
         bot.register_next_step_handler(msg, volver_a_preguntar_nombre)
     else:
-        bot.send_message(
-            message.chat.id, 'No se encontraron resultados para esta consulta')
-        msg = bot.send_message(
-            message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
+        bot.send_message(message.chat.id, 'No se encontraron resultados para esta consulta')
+        msg = bot.send_message(message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
         bot.register_next_step_handler(msg, volver_a_preguntar_nombre)
 
 
@@ -922,14 +877,11 @@ def producto_buscar_num(message):
             texto += f'<code>Tamaño del producto: </code>{producto[6]}\n'
             texto += f'<code>Ancho del producto: </code>{producto[7]} cm\n'
             bot.send_message(message.chat.id, texto, parse_mode='html')
-        msg = bot.send_message(
-            message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
+        msg = bot.send_message(message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
         bot.register_next_step_handler(msg, volver_a_preguntar_num)
     else:
-        bot.send_message(
-            message.chat.id, 'No se encontraron resultados para esta consulta')
-        msg = bot.send_message(
-            message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
+        bot.send_message(message.chat.id, 'No se encontraron resultados para esta consulta')
+        msg = bot.send_message(message.chat.id, 'Desea seguir Buscando?', reply_markup=markup)
         bot.register_next_step_handler(msg, volver_a_preguntar_num)
 
 
@@ -960,8 +912,7 @@ def recibir_mensajes():
 def cmd_agregar_articulo(message):
     markup = ForceReply()  # Numero de botones por fila (3 por defecto)
     bot.send_message(message.chat.id, 'Favor de agregar tus artículos')
-    msg = bot.send_message(
-        message.chat.id, "Numero de Producto:", reply_markup=markup)
+    msg = bot.send_message(message.chat.id, "Numero de Producto:", reply_markup=markup)
     bot.register_next_step_handler(msg, agregar_articulos)
 
 
@@ -983,8 +934,7 @@ def agregar_articulos(message):
         list_a.append(lista_articulos[message.chat.id])
 
         bot.send_message(message.chat.id, "Articulo agregado")
-        msg = bot.send_message(
-            message.chat.id, "Desea seguir Buscando?:", reply_markup=markup)
+        msg = bot.send_message(message.chat.id, "Desea seguir Buscando?:", reply_markup=markup)
         bot.register_next_step_handler(msg, volver_a_preguntar_num1)
     else:
         # bot.send_message(message.chat.id, 'No se encontro El articulo,\n\n Por favor  Digite otro')
@@ -1023,8 +973,7 @@ def ver_lista(message):
     markup.add('Buscar', 'Menu', 'Reservar')
     # muestra los articulos en forma de lista de python
     # print(lista_articulos)
-    bot.send_message(
-        message.chat.id, "-------- Articulos en tu Carrito  ------------")
+    bot.send_message(message.chat.id, "-------- Articulos en tu Carrito  ------------")
 
     i = 0
     prec = 0
@@ -1039,8 +988,7 @@ def ver_lista(message):
         texto += f'<code>Tamaño del producto: </code>{articulos["tam"]}\n'
         texto += f'<code>Ancho del producto: </code>{articulos["anch"]} cm\n\n'
         prec += articulos["prec"]
-        bot.send_message(
-            message.chat.id, f"------------------\n\n  {texto} \n\n ---------------- ", parse_mode='html')
+        bot.send_message(message.chat.id, f"------------------\n\n  {texto} \n\n ---------------- ", parse_mode='html')
 
     reserva = round((prec * porcent))
     msg = bot.send_message(message.chat.id, f"Estos son tus articulos\n\n"
@@ -1053,8 +1001,7 @@ def pagar_reserva(message):
     cid = message.from_user.id
     mid = message.id
     chat = message.chat.id
-    # Numero de botones por fila (3 por defecto)
-    markup = InlineKeyboardMarkup(row_width=1)
+    markup = InlineKeyboardMarkup(row_width=1)  # Numero de botones por fila (3 por defecto)
     # Botones
     b1 = InlineKeyboardButton("Pagar", callback_data="pa")
     b2 = InlineKeyboardButton("Cancelar", callback_data="can")
@@ -1081,8 +1028,7 @@ def volver_a_preguntar_carrito(message):
 
 @bot.message_handler(commands=['buy'])
 def command_pay(message):
-    prices = [LabeledPrice(label='Reserva', amount=(
-        reserva*100)), LabeledPrice('Tax', 500)]
+    prices =[LabeledPrice(label='Reserva', amount=(reserva*100)), LabeledPrice('Tax', 500)]
     bot.send_invoice(
         message.chat.id,  # chat_id
         'Reservar Productos',  # title
@@ -1123,15 +1069,12 @@ def got_payment(message):
                      parse_mode='Markdown')
     cmd_button(message)
 
-
 if __name__ == '__main__':
     print("Bot iniciando...")
     # Configurar los comandos de nuestro bot
     bot.set_my_commands([
-        telebot.types.BotCommand(
-            "/start", "Te muestra todos los comandos disponibles"),
-        telebot.types.BotCommand(
-            "/buttons", "Te muestra los botones para realizar las consultas"),
+        telebot.types.BotCommand("/start", "Te muestra todos los comandos disponibles"),
+        telebot.types.BotCommand("/buttons", "Te muestra los botones para realizar las consultas"),
         telebot.types.BotCommand("/info", "Ofrece informacion sobre el bot"),
         telebot.types.BotCommand("/help", "Ofrece ayuda sobre el bot"),
         telebot.types.BotCommand("/buy", "Ofrece ayuda sobre el bot")

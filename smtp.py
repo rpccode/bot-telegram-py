@@ -93,6 +93,7 @@ def email_cancelacion_orden(email, producto):
 
     def email_confimacion_orden(email):
         email_subject = "Confimacion de Orden"
+        enviar_whatsapp(email_subject)
         receiver_email_address = email  # "rperezcasilla@gmail.com"
         # Create an email message object
         message = EmailMessage()

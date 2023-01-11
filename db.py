@@ -5,7 +5,7 @@ import base64
 from smtp import *
 
 cnxn_str = ("Driver={SQL Server Native Client 11.0};"
-            "Server=DESKTOP-LT26I1H\SQLEXPRESS;"
+            "Server=RUDY\MSSQLSERVER1;"
             "Database=adventureworks;"
             "Trusted_Connection=yes;")
 cnxn = pyodbc.connect(cnxn_str)
@@ -148,7 +148,7 @@ def traer_username(text):
         with cnxn.cursor() as cursor:
             # En este caso no necesitamos limpiar ningún dato
             cursor.execute(
-                f"select top 1 * from dbo.LoginU where UserName = '{text}';")
+                f"select top 1 * from SalesLT.LoginU where UserName = '{text}';")
 
             # Con fetchall traemos todas las filas
             productos = cursor.fetchall()
@@ -163,7 +163,7 @@ def login(text, pas):
         with cnxn.cursor() as cursor:
             # En este caso no necesitamos limpiar ningún dato
             cursor.execute(
-                f"select top 1 * from dbo.LoginU where UserName = '{text}' and Password = '{pas}';")
+                f"select top 1 * from SalesLT.LoginU where UserName = '{text}' and Password = '{pas}';")
 
             # Con fetchall traemos todas las filas
             productos = cursor.fetchall()
@@ -195,7 +195,7 @@ def registrar_usuario_nuevo(user, pas, emal, id):
         with cnxn.cursor() as cursor:
             noCount = " SET NOCOUNT ON; "
             # En este caso no necesitamos limpiar ningún dato
-            consulta = "INSERT into dbo.LoginU(UserName,Password,Email,idcliente)  VALUES(?, ?,?,?);"
+            consulta = "INSERT into SalesLT.LoginU(UserName,Password,Email,idcliente)  VALUES(?, ?,?,?);"
             cursor.execute(consulta, (f'{user}', f'{pas}', f'{emal}', f'{id}'))
             cnxn.commit()
 
